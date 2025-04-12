@@ -51,6 +51,11 @@ export class BuildClubMCPServer extends McpAgent {
         firstName: z.string().describe("Your first name"),
         lastName: z.string().describe("Your last name"),
         email: z.string().email().describe("Your email address"),
+        interestAreas: z
+          .array(z.string())
+          .describe(
+            "Optional list of interest areas for the event, e.g. ['AI', 'Agents', 'LLMs']"
+          ),
         notes: z
           .string()
           .optional()
