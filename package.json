@@ -1,0 +1,29 @@
+{
+  "name": "@joinbuildclub/mcp-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "build": "wrangler build",
+    "format": "biome format --write",
+    "lint:fix": "biome lint --fix",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types",
+    "inspect": "npx @modelcontextprotocol/inspector"
+  },
+  "devDependencies": {
+    "marked": "^15.0.7",
+    "typescript": "^5.5.2",
+    "workers-mcp": "^0.1.0-3",
+    "wrangler": "^4.9.1"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "^0.0.2",
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "agents": "^0.0.43",
+    "hono": "^4.7.4",
+    "zod": "^3.24.2"
+  },
+  "packageManager": "pnpm@10.6.1+sha512.40ee09af407fa9fbb5fbfb8e1cb40fbb74c0af0c3e10e9224d7b53c7658528615b2c92450e74cfad91e3a2dcafe3ce4050d80bda71d757756d2ce2b66213e9a3"
+}
