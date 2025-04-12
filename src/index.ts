@@ -15,7 +15,7 @@ export class BuildClubMCPServer extends McpAgent {
   async init() {
     this.server.tool(
       "list_events",
-      "Retrieve a list of upcoming BuildClub.io events",
+      "Retrieve a list of BuildClub.io events",
       {},
       async ({}) => {
         const events = await fetch(`${API_URL}/events?published=true`);
@@ -51,12 +51,6 @@ export class BuildClubMCPServer extends McpAgent {
         firstName: z.string().describe("Your first name"),
         lastName: z.string().describe("Your last name"),
         email: z.string().email().describe("Your email address"),
-        interestAreas: z
-          .array(z.string())
-          .optional()
-          .describe(
-            "Optional list of interest areas for the event, e.g. ['Product', 'Design', 'Engineering']"
-          ),
         notes: z
           .string()
           .optional()
@@ -64,14 +58,7 @@ export class BuildClubMCPServer extends McpAgent {
             "Optional notes for things like dietary restrictions and other needs"
           ),
       },
-      async ({
-        hubEventId,
-        firstName,
-        lastName,
-        email,
-        interestAreas,
-        notes,
-      }) => {
+      async ({ hubEventId, firstName, lastName, email, notes }) => {
         const response = await fetch(`${API_URL}/events/register`, {
           method: "POST",
           body: JSON.stringify({
@@ -79,7 +66,6 @@ export class BuildClubMCPServer extends McpAgent {
             firstName,
             lastName,
             email,
-            interestAreas,
             notes,
             isGuest: true,
           }),
