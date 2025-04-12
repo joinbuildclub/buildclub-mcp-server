@@ -30,7 +30,7 @@ export class BuildClubMCPServer extends McpAgent {
     this.server.tool(
       "get_event",
       "Retrieve a BuildClub.io event by UUID",
-      { uuid: z.string() },
+      { uuid: z.string().describe("The UUID of the event you're retrieving") },
       async ({ uuid }) => {
         const event = await fetch(`${API_URL}/events/${uuid}`);
         const data: Event = await event.json();
@@ -45,12 +45,24 @@ export class BuildClubMCPServer extends McpAgent {
       "event_registration",
       "Register for a BuildClub.io event by providing your first name, last name, email, and some optional notes for things like dietary restrictions and other needs",
       {
-        hubEventId: z.string(),
-        firstName: z.string(),
-        lastName: z.string(),
-        email: z.string(),
-        interestAreas: z.array(z.string()),
-        notes: z.string(),
+        hubEventId: z
+          .string()
+          .describe("The UUID of the event you're registering for"),
+        firstName: z.string().describe("Your first name"),
+        lastName: z.string().describe("Your last name"),
+        email: z.string().email().describe("Your email address"),
+        interestAreas: z
+          .array(z.string())
+          .optional()
+          .describe(
+            "Optional list of interest areas for the event, e.g. ['Product', 'Design', 'Engineering']"
+          ),
+        notes: z
+          .string()
+          .optional()
+          .describe(
+            "Optional notes for things like dietary restrictions and other needs"
+          ),
       },
       async ({
         hubEventId,
