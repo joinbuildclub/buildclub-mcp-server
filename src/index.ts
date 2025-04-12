@@ -13,26 +13,37 @@ export class BuildClubMCPServer extends McpAgent {
   });
 
   async init() {
-    this.server.tool("list_events", {}, async ({}) => {
-      const events = await fetch(`${API_URL}/events?published=true`);
-      const data: Event[] = await events.json();
-      const stringifiedData = JSON.stringify(data);
-      return {
-        content: [{ type: "text", text: stringifiedData }],
-      };
-    });
+    this.server.tool(
+      "list_events",
+      "Retrieve a list of upcoming BuildClub.io events",
+      {},
+      async ({}) => {
+        const events = await fetch(`${API_URL}/events?published=true`);
+        const data: Event[] = await events.json();
+        const stringifiedData = JSON.stringify(data);
+        return {
+          content: [{ type: "text", text: stringifiedData }],
+        };
+      }
+    );
 
-    this.server.tool("get_event", { uuid: z.string() }, async ({ uuid }) => {
-      const event = await fetch(`${API_URL}/events/${uuid}`);
-      const data: Event = await event.json();
-      const stringifiedData = JSON.stringify(data);
-      return {
-        content: [{ type: "text", text: stringifiedData }],
-      };
-    });
+    this.server.tool(
+      "get_event",
+      "Retrieve a BuildClub.io event by UUID",
+      { uuid: z.string() },
+      async ({ uuid }) => {
+        const event = await fetch(`${API_URL}/events/${uuid}`);
+        const data: Event = await event.json();
+        const stringifiedData = JSON.stringify(data);
+        return {
+          content: [{ type: "text", text: stringifiedData }],
+        };
+      }
+    );
 
     this.server.tool(
       "event_registration",
+      "Register for a BuildClub.io event by providing your first name, last name, email, and some optional notes for things like dietary restrictions and other needs",
       {
         hubEventId: z.string(),
         firstName: z.string(),
