@@ -53,27 +53,18 @@ export class BuildClubMCPServer extends McpAgent {
         firstName: z.string().describe("Your first name"),
         lastName: z.string().describe("Your last name"),
         email: z.string().email().describe("Your email address"),
-        interestAreas: z
-          .array(z.string())
-          .describe(
-            "Optional list of interest areas for the event, e.g. ['AI', 'Agents', 'LLMs']"
-          ),
-        notes: z
-          .string()
-          .optional()
-          .describe(
-            "Optional notes for things like dietary restrictions and other needs"
-          ),
       },
-      async ({ hubEventId, firstName, lastName, email, notes }) => {
+      async ({ hubEventId, firstName, lastName, email }) => {
         const response = await fetch(`${API_URL}/events/register`, {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
-            hubEventId,
+            email,
             firstName,
             lastName,
-            email,
-            notes,
+            hubEventId,
           }),
         });
         const data: EventRegistration = await response.json();
