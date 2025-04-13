@@ -161,7 +161,6 @@ export const LoggedInAuthorizeScreen: FC<{
   oauthScopes: { name: string; description: string }[];
   oauthReqInfo: AuthRequest;
 }> = ({ oauthScopes, oauthReqInfo }) => {
-  console.log(oauthScopes, oauthReqInfo);
   return (
     <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
       <h1 class="text-2xl font-heading font-bold mb-6 text-gray-900">
@@ -188,7 +187,7 @@ export const LoggedInAuthorizeScreen: FC<{
         <input
           type="hidden"
           name="oauthReqInfo"
-          value={`${JSON.stringify(oauthReqInfo)}`}
+          value={JSON.stringify(oauthReqInfo)}
         />
         <input type="hidden" name="email" value="user@example.com" />
         <input type="hidden" name="password" value="password" />
@@ -317,7 +316,7 @@ export const ApproveContent: FC<{
         </span>
       </div>
       <h1 class="text-2xl font-heading font-bold mb-4 text-gray-900">
-        ${message}
+        {message}
       </h1>
       <p class="mb-8 text-gray-600">
         You will be redirected back to the application shortly.
