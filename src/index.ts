@@ -47,7 +47,9 @@ export class BuildClubMCPServer extends McpAgent {
       {
         hubEventId: z
           .string()
-          .describe("The UUID of the event you're registering for"),
+          .describe(
+            "The Hub Event UUID of the event you're registering for, not to be confused with the Event UUID"
+          ),
         firstName: z.string().describe("Your first name"),
         lastName: z.string().describe("Your last name"),
         email: z.string().email().describe("Your email address"),
@@ -72,7 +74,6 @@ export class BuildClubMCPServer extends McpAgent {
             lastName,
             email,
             notes,
-            isGuest: true,
           }),
         });
         const data: EventRegistration = await response.json();
