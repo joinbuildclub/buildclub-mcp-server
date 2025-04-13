@@ -1,13 +1,18 @@
 # BuildClub.io Official MCP Server
 
-## Connect Claude Desktop to your remote MCP server
+## MCP Clients
 
-Update the Claude configuration file to point to your `workers.dev` URL (ex: `worker-name.account-name.workers.dev/sse`) and restart Claude
+### Claude Desktop
+
+Add this to Claude Desktop by following these steps:
+
+1. Navigate to `Settings > Developer > Edit Config`
+2. Open the config file and paste this snippet below.
 
 ```json
 {
   "mcpServers": {
-    "math": {
+    "buildclub": {
       "command": "npx",
       "args": [
         "mcp-remote",

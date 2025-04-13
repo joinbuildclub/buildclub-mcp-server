@@ -137,7 +137,7 @@ export const Layout: FC = (props) => {
               href="/"
               class="text-xl font-heading font-bold text-primary hover:text-primary/80 transition-colors"
             >
-              BuildClub.io MCP Server
+              <img src="/logo.png" alt="BuildClub.io Logo" class="h-12" />
             </a>
           </div>
         </header>
@@ -342,13 +342,62 @@ export const ApproveContent: FC<{
 
 export const Home: FC = () => {
   return (
-    <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md text-center">
-      <h1 class="text-2xl font-heading font-bold mb-4 text-gray-900">
-        BuildClub.io MCP Server
-      </h1>
-      <p class="mb-8 text-gray-600">
-        This is a simple MCP server for the BuildClub.io platform.
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+      <div>
+        <a href="https://buildclub.io?ref=buildclub-mcp-server" target="_blank">
+          <img
+            src="/logo-square.png"
+            alt="BuildClub.io Logo"
+            class="flex mx-auto justify-center h-48 w-48"
+          />
+        </a>
+      </div>
+      <h2 class="mb-8 text-gray-600 text-center font-bold">
+        Official BuildClub.io MCP Server
+      </h2>
+      <p class="mb-8 text-gray-600 text-center max-w-xl mx-auto">
+        This is the official MCP server for BuildClub.io. It is used to
+        authenticate users and provide them with access to the BuildClub.io
+        platform.
       </p>
+      <h3 class="mb-2 text-gray-600 font-bold text-lg">Installation</h3>
+      <h4 class="mb-2 text-gray-600 font-bold">Claude Desktop</h4>
+      <p class="mb-2 text-gray-600">
+        The easiest way to install the MCP server is to use Claude Desktop.
+      </p>
+      <ol class="mb-2 text-gray-600 list-decimal list-inside">
+        <li>
+          Navigate to <code>{"Settings > Developer > Edit Config"}</code>
+        </li>
+        <li>Open the config file and paste this snippet below.</li>
+      </ol>
+      <pre>
+        {`
+{
+  mcpServers: {
+    buildclub: {
+      command: "npx",
+      args: [
+        "mcp-remote",
+        "https://buildclub-mcp-server.timwheeler.workers.dev/sse",
+      ],
+    },
+  },
+}`}
+      </pre>
+      <h3 class="mb-2 text-gray-600 font-bold text-lg">Capabilities</h3>
+      <h4 class="mb-2 text-gray-600 font-bold">Tools</h4>
+      <ul class="mb-2 text-gray-600 list-disc list-inside">
+        <li>
+          <code>list_events</code> - Retrieve a list of BuildClub.io events
+        </li>
+        <li>
+          <code>get_event</code> - Retrieve a BuildClub.io event by UUID
+        </li>
+        <li>
+          <code>event_registration</code> - Register for a BuildClub.io event
+        </li>
+      </ul>
     </div>
   );
 };
