@@ -169,7 +169,7 @@ export const LoggedInAuthorizeScreen: FC<{
 
       <div class="mb-8">
         <h2 class="text-lg font-semibold mb-3 text-gray-800">
-          MCP Remote Auth Demo would like permission to:
+          BuildClub.io would like permission to:
         </h2>
         <ul class="space-y-2">
           {oauthScopes.map((scope) => (
@@ -224,7 +224,7 @@ export const LoggedOutAuthorizeScreen: FC<{
 
       <div class="mb-8">
         <h2 class="text-lg font-semibold mb-3 text-gray-800">
-          MCP Remote Auth Demo would like permission to:
+          BuildClub.io would like permission to:
         </h2>
         <ul class="space-y-2">
           {oauthScopes.map((scope) => (
